@@ -1,0 +1,39 @@
+h1, h2, h3
+{
+    font-family: Courier;
+    color: rgb(26,21,100);
+}
+
+body, p
+{
+    background-color: lightgray;
+    font-family: Courier;
+}
+
+footer
+{
+    background-color: darkgray;
+}
+
+body
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+}
+
+td, th
+{
+    text-align: center;
+    border: 1px solid black;
+}
+
+a
+{
+    color: steelblue;
+}
+
+img
+{
+    float: right;
+}
