@@ -1,85 +1,273 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Simply Me</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color: black; /* Green */
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">My Resume</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="inactive"><a href="#">References</a></li>
+      <li><a href="#">Contact Me</a></li>
+      <li><a href="#">Portfolio</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-html {
-  box-sizing: border-box;
+body {
+  background-color: black;
+  font-family: cursive;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-.column {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.container {
-  padding: 0 16px;
-}
-
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.title {
-  color: grey;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
+.glow {
+  font-size: 80px;
+  color: #fff;
   text-align: center;
-  cursor: pointer;
-  width: 100%;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
-.button:hover {
-  background-color: #555;
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px white, 0 0 40px white, 0 0 50px white, 0 0 60px white, 0 0 70px white;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px gray, 0 0 40px gray, 0 0 50px gray, 0 0 60px gray, 0 0 70px gray, 0 0 80px gray;
+  }
 }
 </style>
 </head>
 <body>
 
-<h2>About me</h2>
-<p>Hi! This is my About Me page</p>
-<br>
+<h1 class="glow">Valentina's Resume</h1>
+    
+    
+  <img src="Self.jpg" class="img-responsive img-rounded margin" style="display:inline" alt="Bird" width="350" height="350">
+</div>
 
-<div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="Images/Self.PNG" style="width:70%">
-      <div class="container">
-        <h2>Valentina Diaz</h2>
-        <p class="title">Computer Science student at Florida Atlantic University</p>
-        <p>Phone #: (561) 932 - 4263</p>
-        <p>diazv2018@fau.edu</p>
-        <p><button class="button">Contact</button></p>
-          <a href="mailto:diazv2018@fau.edu">
-      </div>
+<!-- Second Container -->
+    
+    
+<div class="container-fluid bg-2 text-center">
+      <article class="about">
+    <h1>Contact Me:</h1>
+    <article class="via">
+        <h3>Address</h3>
+        <p>128 Cayman Dr. Palm Springs FL</p>
+    </article>
+    <article class="via">
+        <h3>E-mail</h3>
+        <p>diav2018@fau.edu</p>
+    </article>
+    <article class="via">
+        <h3>Cell Number</h3>
+        <p>(561)932-4263</p>
+    </article>
+    </article>
+  <a href="#" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-search"></span> Search
+  </a>
+</div>
+
+    
+
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">About Me:</h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+        
+<!-- Skills (Grid) --> 
+    </table>
+    <hr>
+    <h3><strong>Skills</strong></h3>
+    <table border=0 class="underlined">
+        <tr>
+            <td>
+            <ol id="example1">
+            <li><p>Bilingual (English, Spanish)</p></li>
+            <li><p>Superior typing and data entry abilities (60 WPM) (abc-257 & 253)</p></li>
+            <li><p>High customer serivce abilities and instincts (abc-257 & 253)</p></li>
+            <li><p>Good telephone and in-person courtesy skills</p></li>
+            </ol>
+            </td>
+        </tr>
+    </table>
+<style>
+ .underlined ol {
+counter-reset:li;
+margin-left:0; /* Remove the default left margin */
+padding-left:0; /* Remove the default left padding */
+}
+
+.underlined	ol > li 
+{
+position:relative; /* Create a positioning context */
+margin:0 0 6px 2em; /* Give each list item a left margin to make room for the numbers */
+padding:4px 8px; /* Add some spacing around the content */
+list-style:none; /* Disable the normal item numbering */
+border-top:2px solid #666;
+background:#f6f6f6;
+}
+
+.underlined ol > li:before 
+{
+content:counter(li); /* Use the counter as content */
+counter-increment:li; /* Increment the counter by 1 */
+/* Position and style the number */
+position:absolute;
+top:-2px;
+left:-2em;
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+box-sizing:border-box;
+width:2em;
+/* Some space between the number and the content in browsers that support
+generated content but not positioning it */
+margin-right:8px;
+padding:4px;
+border-top:2px solid #666;
+color:#fff;
+background:#666;
+font-weight:bold;
+font-family:"Helvetica Neue", Arial, sans-serif;
+text-align:center;
+}
+
+.underlined li ol,
+.underlined li ul 
+{
+margin-top:6px;
+}
+
+.underlined ol ol li:last-child 
+{
+margin-bottom:0;
+}
+</style>
+    
+<!-- Professional Experience (Grid) -->
+      
     </div>
+    <div class="col-sm-4"> 
+       <ul>
+     <h3><strong>Professional Experience</strong></h3>
+        <h4>Direct Fresh Maerketing, Inc. <span class="year">2017- Present</span> 
+        <p>Office Manager</p></h4>
+        <img src= "DFM.jpg" heigh=75 width=75>
+    
+        <h4>Edible Arrangements <span class="year"> 2015 - 2017 </span>
+        <p>Customer Service Representative</p></h4>
+        <img src= "EDI.jpg" heigh=75 width=75>
+    
+        <h4>Jazmin Life Coach Counseling <span class="year"> 2013 - 2015 </span>
+        <p>Office Manager</p></h4>
+    </ul>
+    </div>
+      
+    
+    
+<!---Education (Grid)--->
+    <div class="col-sm-4"> 
+     </style>
+       <h3><strong>Education</strong></h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>School</th>
+        <th>Degree</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Florida Atlantic University</td>
+        <td>Computer Science</td>
+        <td>2018-Present</td>
+      </tr>
+      <tr>
+        <td>Palm Beach State College</td>
+        <td>Associates of Arts</td>
+        <td>2016-2018</td>
+      </tr>
+      <tr>
+        <td>John I. Leonard Highschool</td>
+        <td>2009-2013</td>
+        <td>Highschool Diploma</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
   </div>
+
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
+</footer>
 
 </body>
 </html>
