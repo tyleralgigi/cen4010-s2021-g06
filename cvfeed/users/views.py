@@ -1,5 +1,8 @@
 from django.shortcuts import render
+
+from post.models import Post
 from .forms import RegisterForm
+from .models import User
 
 
 def register(request):
@@ -14,3 +17,15 @@ def register(request):
 
     return render(request, 'registration/register.html')
 
+
+def user_view(request, username):
+    user = User.objects.get(username=username)
+    posts = Post.objects.filter(author=user)
+    print(posts)
+
+    context = {
+        'viewedUser': user,
+        'posts': posts
+    }
+
+    return render(request, 'user_view.html', context)

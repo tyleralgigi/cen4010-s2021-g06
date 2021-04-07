@@ -3,32 +3,32 @@
 {% block title %}CVFeed - New Post{% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="container h-auto">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xs-9 mx-auto">
                 <div class="card my-5">
                     <div class="card-body">
-                        <h5 class="card-title text-center my-3">New Post</h5>
-                        <form action="/post/" method="POST" role="form">
+                        <div class="text-center">
+                            <img src="{{ post.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                            <hr/>
+                            <p>{{ post.description }}</p>
+                        </div>
+                        {% if comments|length > 0 %}
+                            <hr/>
+                            <div class="text-start">
+                            {% for c in comments %}
+                                <p><span class="fw-bold">{{ c.author.username }}:</span> {{ c.comment }}</p>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                        <hr/>
+                        <form action="/post/{{ post.id }}/" method="POST" role="form">
                             {% csrf_token %}
-                            <label for="imageUpload">Select Image</label>
                             <div class="input-group mt-2 mb-3">
-                                <input id="upload" type="file" class="form-control" id="imageUpload">
+                                <textarea class="form-control" name="comment" id="id_comment" rows="3" maxlength="512" placeholder="Comment..."></textarea>
                             </div>
-                            <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
-                            <label for="imageDescription" class="mt-2">Description:</label>
-                            <div class="input-group mt-2 mb-3">
-                                <textarea class="form-control" id="imageDescription" rows="3" placeholder="Share your thoughts!"></textarea>
-                            </div>
-                            {% if form.errors %}
-                                <div class="alert alert-danger text-center" role="alert">
-                                    Error creating post! Please try again!
-                                </div>
-                            {% endif %}
-                            <div class="input-group my-3">
-                                <div class="col text-center">
-                                    <input class="btn btn-primary w-25" type="submit" value="Post">
-                                </div>
+                            <div class="col text-start">
+                                <input class="btn btn-primary" type="submit" value="Post comment">
                             </div>
                         </form>
                     </div>

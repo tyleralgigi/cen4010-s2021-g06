@@ -3,5 +3,43 @@
 {% block title %}CVFeed{% endblock %}
 
 {% block content %}
-    <p>asdfdsasdf</p>
+    <div class="container h-100">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xs-9 mx-auto">
+                {% if page.object_list|length > 0 %}
+                    {% for p in page.object_list %}
+                        <div class="card my-5">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="{{ p.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                                    {% if p.description %}
+                                        <hr/>
+                                        <p>{{ p.description }}</p>
+                                    {% endif %}
+                                    <hr/>
+                                    <div class="text-start">
+                                        <p>{{ p.author.username }} - {{ p.timestamp | date:"m-d-Y" }}</p>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <a class="" href="/post/{{ p.id }}/">View comments</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if page.has_previous %}
+                    <a href="?page={{ page.previous_page_number }}">&laquo; previous</a>
+                {% endif %}
+
+                {% if page.has_next %}
+                    <a href="?page={{ page.next_page_number }}">next &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 {% endblock %}

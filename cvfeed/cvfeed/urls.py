@@ -23,6 +23,8 @@ from users import views as user_views
 urlpatterns = [
     path('', feed_views.index),
     path('post/', post_views.new_post),
+    path('post/<int:post_id>/', post_views.view_post),
+    path('user/<slug:username>/', user_views.user_view),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/register/', user_views.register, name='register'),
