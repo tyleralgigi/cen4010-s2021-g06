@@ -21,10 +21,15 @@ from feed import views as feed_views
 from users import views as user_views
 
 urlpatterns = [
-    path('', feed_views.index),
+    path('', feed_views.index_feed),
+    path('user/<slug:username>/', feed_views.user_feed),
+    path('tag/<slug:tag>/', feed_views.tag_feed),
+    path('search/', feed_views.search),
+    path('reports/', feed_views.reports_feed),
+    path('reports/<int:post_id>/', feed_views.report_post),
+    path('reports/remove/', feed_views.remove_post),
     path('post/', post_views.new_post),
     path('post/<int:post_id>/', post_views.view_post),
-    path('user/<slug:username>/', user_views.user_view),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/register/', user_views.register, name='register'),

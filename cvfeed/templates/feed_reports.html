@@ -1,0 +1,95 @@
+{% extends "base_nav.html" %}
+
+{% load feed_extras %}
+
+{% block title %}CVFeed{% endblock %}
+
+{% block content %}
+    <div class="modal fade" id="removePostModal" tabindex="-1" aria-labelledby="removePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/reports/remove/" method="POST" role="form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Report Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you wish to remove this post?</p>
+                        <div class="row">
+                            <label for="id_post_id" class="col-sm-2 col-form-label">Post ID:</label>
+                            <div class="col-sm-10">
+                                <input type="number" readonly class="form-control-plaintext" id="id_post_id" name="post_id" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container h-100">
+        {% block feed_headers %}
+        {% endblock %}
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 mx-auto">
+                {% if page.object_list|length > 0 %}
+                    {% for p in page.object_list %}
+                        <div class="card my-5">
+                            <div class="card-body">
+                                <div class="alert alert-danger">
+                                    Total reports: {{ p.reports|length }}
+                                </div>
+                                <div class="text-center">
+                                    <img src="{{ p.post.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 500px;">
+                                    {% if p.post.description %}
+                                        <hr/>
+                                        <p>{{ p.post.description | create_tag_links }}</p>
+                                    {% endif %}
+                                    <hr/>
+                                    <div class="text-start">
+                                        <p><a href="/user/{{ p.post.author.username }}/">@{{ p.post.author.username }}</a> - {{ p.post.timestamp | date:"m-d-Y" }}</p>
+                                    </div>
+                                </div>
+                                <hr/>
+                                {% for r in p.reports %}
+                                    <div class="alert alert-danger">
+                                        <span class="fw-bold"><a href="/user/{{ r.reporter.username }}/">@{{ r.reporter.username }}</a>:</span> {{ r.report_description }}
+                                    </div>
+                                {% endfor %}
+                                <div class="text-end">
+                                    <a class="" href="/post/{{ p.post.id }}/">View comments</a>
+                                </div>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removePostModal" onclick="set_post({{ p.post.id }})">
+                                    Remove Post
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if page.has_previous %}
+                    <a href="?page={{ page.previous_page_number }}">&laquo; previous</a>
+                {% endif %}
+
+                {% if page.has_next %}
+                    <a href="?page={{ page.next_page_number }}">next &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function set_post(id) {
+            document.getElementById("id_post_id").setAttribute("value", id)
+        }
+    </script>
+{% endblock %}

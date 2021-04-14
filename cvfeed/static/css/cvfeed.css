@@ -12,13 +12,13 @@ a, a:hover, a:focus {
 input.search-query {
     background-color: #2d3339 !important;
     color: #fff !important;
-    width:600px !important;
+    width: 600px !important;
 }
 
 .search-dropdown-menu {
     background-color: #2d3339 !important;
     color: #fff !important;
-    width:600px !important;
+    width: 600px !important;
 }
 
 .search-dropdown-menu > li > div > button {

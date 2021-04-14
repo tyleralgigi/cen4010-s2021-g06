@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils import timezone
@@ -23,7 +24,7 @@ def new_post(request):
     context = dict()
     context['form'] = PostForm()
 
-    return render(request, 'new_post.html', context)
+    return render(request, 'post_new.html', context)
 
 
 @login_required

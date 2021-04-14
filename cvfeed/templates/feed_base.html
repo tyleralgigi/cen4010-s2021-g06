@@ -1,24 +1,28 @@
 {% extends "base_nav.html" %}
 
+{% load feed_extras %}
+
 {% block title %}CVFeed{% endblock %}
 
 {% block content %}
     <div class="container h-100">
+        {% block feed_headers %}
+        {% endblock %}
         <div class="row align-items-center justify-content-center">
-            <div class="col-xs-9 mx-auto">
+            <div class="col-6 mx-auto">
                 {% if page.object_list|length > 0 %}
                     {% for p in page.object_list %}
                         <div class="card my-5">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="{{ p.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                                    <img src="{{ p.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 500px;">
                                     {% if p.description %}
                                         <hr/>
-                                        <p>{{ p.description }}</p>
+                                        <p>{{ p.description | create_tag_links }}</p>
                                     {% endif %}
                                     <hr/>
                                     <div class="text-start">
-                                        <p>{{ p.author.username }} - {{ p.timestamp | date:"m-d-Y" }}</p>
+                                        <p><a href="/user/{{ p.author.username }}/">@{{ p.author.username }}</a> - {{ p.timestamp | date:"m-d-Y" }}</p>
                                     </div>
                                 </div>
                                 <div class="text-end">

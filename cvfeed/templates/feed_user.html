@@ -1,0 +1,8 @@
+{% extends "feed_base.html" %}
+
+{% block title %}CVFeed - {{ viewedUser.username }}{% endblock %}
+
+{% block feed_headers %}
+    <h2 class="text-white display-6">{{ viewedUser.username }}</h2>
+    <h5 class="text-white display-6">Since {{ viewedUser.date_joined | date:"M, Y" }}</h5>
+{% endblock  %}

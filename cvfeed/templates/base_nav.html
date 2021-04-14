@@ -13,18 +13,19 @@
             </ul>
             <ul class="nav navbar-nav my-2 justify-content-center">
                 <li class="nav-item">
-                    <form class="d-flex">
-                        <div class="dropdown">
-                            <input class="form-control search-query" type="text" placeholder="Search..." data-bs-toggle="dropdown" aria-label="search">
+                    <form class="d-flex" action="/search/" method="POST" role="form">
+                        {% csrf_token %}
+                        <div class="dropdown input-group">
+                            <input id="id_search" name="search_text" class="form-control search-query" type="text" placeholder="Search..." data-bs-toggle="dropdown" aria-label="search">
                             <ul class="dropdown-menu search-dropdown-menu" aria-labelledby="searchDropdown">
                                 <li>
                                     <div class="container">
-                                        <button type="button" class="btn btn-link w-100 text-start">Search by #tag</button>
+                                        <button type="submit" name="tag_search" class="btn btn-link w-100 text-start">Search by #tag</button>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="container">
-                                        <button type="button" class="btn btn-link w-100 text-start">Search by @username</button>
+                                        <button type="submit" name="user_search" class="btn btn-link w-100 text-start">Search by @username</button>
                                     </div>
                                 </li>
                             </ul>
@@ -33,18 +34,20 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav w-100 my-2 justify-content-end">
+                {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="btn btn-danger me-2" href="/reports/" role="button">Reports</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <form class="form-inline">
-                        <a class="btn btn-primary me-2" href="/post" role="button">New Post</a>
-                    </form>
+                    <a class="btn btn-primary me-2" href="/post" role="button">New Post</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ request.user }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/accounts/profile/">Profile</a></li>
-                        <li><a class="dropdown-item" href="/accounts/settings/">Settings</a></li>
+                        <li><a class="dropdown-item" href="/user/{{ request.user }}/">Profile</a></li>
                         <li><div class="dropdown-divider"></div></li>
                         <li><a class="dropdown-item text-danger" href="/accounts/logout/">Logout</a></li>
                     </ul>

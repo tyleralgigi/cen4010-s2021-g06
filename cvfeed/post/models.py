@@ -18,6 +18,10 @@ class Post(models.Model):
     timestamp = models.DateTimeField()
     description = models.CharField(max_length=256, null=True)
     image = models.ImageField(upload_to=path_and_rename)
+    is_hidden = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-timestamp']
 
 
 class Comment(models.Model):
@@ -25,3 +29,10 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
     comment = models.TextField(max_length=256)
+
+
+class Report(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    reporter = models.ForeignKey(User, on_delete=models.CASCADE)
+    report_description = models.TextField(max_length=512, default="")
+    timestamp = models.DateTimeField()
