@@ -14,7 +14,7 @@ function readURL(input) {
 }
 
 $(function () {
-    $('#upload').on('change', function () {
+    $('#id_image').on('change', function () {
         readURL(input);
     });
 });
@@ -22,11 +22,4 @@ $(function () {
 /*  ==========================================
     SHOW UPLOADED IMAGE NAME
 * ========================================== */
-var input = document.getElementById( 'upload' );
-var infoArea = document.getElementById( 'upload-label' );
-
-input.addEventListener( 'change', showFileName );
-function showFileName( event ) {
-    var input = event.srcElement;
-    var fileName = input.files[0].name;
-}
+var input = document.getElementById( 'id_image' );
