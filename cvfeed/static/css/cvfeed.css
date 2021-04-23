@@ -1,0 +1,38 @@
+body {
+    background: #212529 !important;
+    height: 100%;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    white-space: nowrap;
+    color: #616161;
+}
+
+input.search-query {
+    background-color: #2d3339 !important;
+    color: #fff !important;
+    width: 600px !important;
+}
+
+.search-dropdown-menu {
+    background-color: #2d3339 !important;
+    color: #fff !important;
+    width: 600px !important;
+}
+
+.search-dropdown-menu > li > div > button {
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #2d3339 !important;
+    color: #fff !important;
+}
+
+.search-dropdown-menu > li > div > button:hover {
+    background-color: #4f5964 !important;
+    color: #fff !important;
+}
+
+textarea {
+    resize: none;
+}

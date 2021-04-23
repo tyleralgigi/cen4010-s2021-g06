@@ -1,0 +1,102 @@
+{% extends "base_nav.html" %}
+
+{% load feed_extras %}
+
+{% block title %}CVFeed - New Post{% endblock %}
+
+{% block content %}
+    {% if user.is_staff %}
+        <div class="modal fade" id="removePostModal" tabindex="-1" aria-labelledby="removePostModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="/reports/remove/" method="POST" role="form">
+                        {% csrf_token %}
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Report Post</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you wish to remove this post?</p>
+                            <div class="row">
+                                <label for="id_post_id" class="col-sm-2 col-form-label">Post ID:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" readonly class="form-control-plaintext" id="id_post_id" name="post_id" value="{{ post.id }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/reports/{{ post.id }}/" method="POST" role="form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Report Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you wish to report this post?</p>
+                        <textarea class="form-control" name="report_description" id="id_report_description" rows="3" maxlength="512" placeholder="Enter report description..."></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container h-auto">
+        <div class="row align-items-center">
+            <div class="col-6 mx-auto">
+                <div class="card my-5">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{{ post.image.url }}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                            {% if post.description %}
+                                <hr/>
+                                <p>{{ post.description | create_tag_links }}</p>
+                            {% endif %}
+                        </div>
+                        {% if comments|length > 0 %}
+                            <hr/>
+                            <div class="text-start">
+                            {% for c in comments %}
+                                <p><span class="fw-bold"><a href="/user/{{ c.author.username }}/">@{{ c.author.username }}</a>:</span> {{ c.comment }}</p>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                        <hr/>
+                        <form action="/post/{{ post.id }}/" method="POST" role="form">
+                            {% csrf_token %}
+                            <div class="input-group mt-2 mb-3">
+                                <textarea class="form-control" name="comment" id="id_comment" rows="3" maxlength="512" placeholder="Comment..."></textarea>
+                            </div>
+                            <div class="col text-start">
+                                <input class="btn btn-primary" type="submit" value="Post comment">
+                            </div>
+                        </form>
+                        {% if user.is_staff %}
+                            <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#removePostModal">
+                                Remove Post
+                            </button>
+                        {% endif %}
+                        <div class="text-end">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#reportModal">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
